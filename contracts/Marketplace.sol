@@ -167,4 +167,28 @@ contract Marketplace is ERC721URIStorage {
 
         return items;
     }
+
+    function fetchItemsListed() public view returns (MarketItem[] memory) {
+        uint256 totalCount = 0;
+        uint256 itemcount = 0;
+        uint256 currentIndex = 0;
+
+        for(uint256 i = 1; i < totalCount; i++) {
+            if(idMarketItem[i].seller == address(msg.sender)) {
+                itemcount++;
+            }
+        }
+
+        MarketItem[] memory items = new MarketItem[](itemcount);
+
+        for(uint256 i = 1; i < totalCount; i++) {
+            if(idMarketItem[i].seller == address(msg.sender)) {
+                uint256 currentId = i;
+                MarketItem storage currentItem = idMarketItem[currentId];
+                items[currentIndex] = currentItem;
+            }
+        }
+
+        return items;
+    }
 }
