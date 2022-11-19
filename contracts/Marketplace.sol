@@ -128,7 +128,7 @@ contract Marketplace is ERC721URIStorage {
         payable(marketItem.seller).transfer(msg.value);
     }
 
-    function getUnsoldTokens() public view returns (MarketItem[] memory) {
+    function getMarketItems() public view returns (MarketItem[] memory) {
         uint256 unsoldTokens = _tokenIds.current() - _itemsSold.current();
         MarketItem[] memory items = new MarketItem[](unsoldTokens);
         uint256 counter = 0;
@@ -168,7 +168,7 @@ contract Marketplace is ERC721URIStorage {
         return items;
     }
 
-    function fetchItemsListed() public view returns (MarketItem[] memory) {
+    function getItemsListed() public view returns (MarketItem[] memory) {
         uint256 totalCount = 0;
         uint256 itemcount = 0;
         uint256 currentIndex = 0;
