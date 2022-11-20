@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { Button } from "../index.js";
-import { Discover, HelpCenter, Notification, Profile } from "./index.js";
-import Image from "next/image";
+import { useState } from 'react';
+import { Button } from '../index.js';
+import { Discover, HelpCenter, Notification, Profile } from './index.js';
+import Image from 'next/image';
 
 // icons
-import { MdNotifications } from "react-icons/md";
-import { BsSearch } from "react-icons/bs";
-import { CgMenuLeft, CgMenuRight } from "react-icons/cg";
-import images from "../../styles/assets/images";
+import { MdNotifications } from 'react-icons/md';
+import { BsSearch } from 'react-icons/bs';
+import { CgMenuLeft, CgMenuRight } from 'react-icons/cg';
+import images from '../../styles/assets/images';
 
 // internal import
-import Style from "./NavBar.module.scss";
+import Style from './NavBar.module.scss';
 
 const NavBar = () => {
     // states
@@ -25,13 +25,16 @@ const NavBar = () => {
 
         closeAllComponent();
 
-        if (btnText === "Discover") {
+        console.log(btnText);
+
+
+        if (btnText === 'Discover') {
             setDiscover(true);
-        } else if (btnText === "Help") {
+        } else if (btnText === 'Help Center') {
             setHelpCenter(true);
-        } else if (btnText === "Notification") {
+        } else if (btnText === 'Notification') {
             setNotification(true);
-        } else if (btnText === "Profile") {
+        } else if (btnText === 'Profile') {
             setProfile(true);
         }
     };
