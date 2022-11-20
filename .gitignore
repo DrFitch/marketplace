@@ -5,6 +5,7 @@ coverage.json
 typechain
 typechain-types
 .next
+.next/trace
 
 #Hardhat files
 cache
