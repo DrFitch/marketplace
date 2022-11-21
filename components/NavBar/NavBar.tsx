@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button } from '../index.js';
-import { Discover, HelpCenter, Notification, Profile } from './index.js';
+import { Discover, HelpCenter, Notification, Profile, SideBar } from './index.js';
 import Image from 'next/image';
 
 // icons
@@ -154,7 +154,7 @@ const NavBar = () => {
                         {/* sidebar component */}
                         {sideBar && (
                             <div className={Style.SideBar}>
-                                <SideBar setOpenSideMenu={setOpenSideMenu} />
+                                <SideBar setOpenSideMenu={setSideBar} />
                             </div>
                         )}
                     </div>

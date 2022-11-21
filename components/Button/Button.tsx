@@ -1,6 +1,11 @@
 import React from 'react'
 
-const Button = () => {
+type ButtonProps = {
+    btnName?: string;
+    btnText?: string;
+}
+
+const Button = ({ btnName, btnText }: ButtonProps) => {
     return (
         <div>Button</div>
     )
