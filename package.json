@@ -17,6 +17,10 @@
     "hardhat": "^2.12.2"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.10.14",
+    "@mui/material": "^5.10.14",
     "@openzeppelin/contracts": "^4.8.0",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",

@@ -1,69 +1,78 @@
-import React from "react";
-import Image from "next/image";
-import { FaUserAlt, FaRegImage, FaUserEdit } from "react-icons/fa";
-import { MdHelpCenter } from "react-icons/md";
-import { TbDownloadOff, TbDownload } from "react-icons/tb";
+import Typography from "@mui/material/Typography";
 import Link from "next/link";
+import React, { useState } from "react";
+import { FaUserAlt } from "react-icons/fa";
 
-// internal
-import Style from "./Profile.module.scss";
+import Avatar from "@mui/material/Avatar";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Tooltip from "@mui/material/Tooltip";
 import images from "../../../styles/assets/images";
+import Style from "./Profile.module.scss";
+
 
 const Profile = () => {
+
+    const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+
+    const settings = [{
+        name: 'Profile',
+        icon: <FaUserAlt />,
+        link: '/profile'
+    }, {
+        name: 'Account',
+        icon: <FaUserAlt />,
+        link: '/account'
+    },
+    {
+        name: 'Help',
+        icon: <FaUserAlt />,
+        link: '/help'
+    },
+    {
+        name: 'Disconnect',
+        icon: <FaUserAlt />,
+        link: '/disconnect'
+    }];
+
+    const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorElUser(event.currentTarget);
+    };
+
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
+    };
+
     return (
-        <div className={Style.profile_account}>
-            <Image
-                src={images.user}
-                alt="user profile"
-                width={50}
-                height={50}
-                className={Style.profile_account_img} />
-
-            <div className={Style.profile_account_info}>
-                <p>f1tch</p>
-                <small>0x2cb3032faace320</small>
-            </div>
-
-            <div className={Style.profile_account_menu}>
-                <div className={Style.profile_account_menu_one}>
-                    <div className={Style.profile_account_menu_item}>
-                        <FaUserAlt />
-                        <p>
-                            <Link href={{ pathname: "/myprofile" }}>My profile</Link>
-                        </p>
-                    </div>
-                    <div className={Style.profile_account_menu_item}>
-                        <FaRegImage />
-                        <p>
-                            <Link href={{ pathname: "/my-item" }}>My Items</Link>
-                        </p>
-                    </div>
-                    <div className={Style.profile_account_menu_item}>
-                        <FaUserEdit />
-                        <p>
-                            <Link href={{ pathname: "/edit-profile" }}>Edit profile</Link>
-                        </p>
-                    </div>
+        <>
+            <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt="Remy Sharp" src={images.user.src} />
+                </IconButton>
+            </Tooltip>
+            <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                keepMounted
+                transformOrigin={{ vertical: "top", horizontal: "right" }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}>
+                <div className={Style.profile_account_info}>
+                    <p>f1tch</p>
+                    <small>0x2cb3032faace320</small>
                 </div>
-
-                <div className={Style.profile_menu_two}>
-                    <div className={Style.profile_menu_one_item}>
-                        <MdHelpCenter />
-                        <p>
-                            <Link href={{ pathname: "/help" }}>Help</Link>
-                        </p>
-                    </div>
-                </div>
-                <div className={Style.profile_menu_two}>
-                    <div className={Style.profile_menu_one_item}>
-                        <TbDownloadOff />
-                        <p>
-                            <Link href={{ pathname: "/disconnect" }}>Disconnect</Link>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+                {settings.map((setting) => (
+                    <MenuItem key={setting.name} onClick={handleCloseUserMenu}>
+                        <Link href={{ pathname: setting.link }}>
+                            <Typography textAlign="center">{setting.name}</Typography>
+                        </Link>
+                    </MenuItem>
+                ))}
+            </Menu>
+        </>
     );
 };
 
