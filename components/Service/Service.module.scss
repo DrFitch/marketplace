@@ -1,0 +1,9 @@
+.service {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .service_description {
+    text-align: center;
+  }
+}
